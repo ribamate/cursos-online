@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acadia - Plataforma de Cursos de TI (Aluno)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #343a40, #212529);
+    }
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+    .nav-link.active {
+      font-weight: 600;
+    }
+    .card {
+      border: none;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      margin: 15px 0;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .btn-outline-light {
+      border: none;
+      background-color: #212529;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+    .btn-outline-light:hover {
+      background-color: #343a40;
+      color: #fff;
+    }
+    footer, .footer-fixed {
+      background-color: #212529;
+      color: #fff;
+      padding: 1rem 0;
+      font-weight: 600;
+      font-size: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+    .text-bg-secondary {
+      background-color: #6c757d !important;
+      color: #fff !important;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="paginainicial.html">ACADIA</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="paginainicial.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              id="alunoDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Aluno
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="alunoDropdown">
+              <li><a class="dropdown-item" href="certificado.html">Receber certificado</a></li>
+              <li><a class="dropdown-item" href="avaliar.html">Avaliar curso</a></li>
+              <li><a class="dropdown-item" href="mensagem.html">Enviar mensagem ao professor</a></li>
+              <li><a class="dropdown-item" href="progresso.html">Verificar progresso</a></li>
+              <li><a class="dropdown-item" href="#">Acessar curso</a></li>
+              <li><a class="dropdown-item" href="comprarcurso.html">Comprar curso</a></li>
+              <li><a class="dropdown-item" href="#">Visualizar cursos</a></li>
+              <li><a class="dropdown-item" href="#">Editar perfil</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="TeladeLogin.html">Sair da conta</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Lista de cursos</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Digite o que deseja"
+            aria-label="Buscar"
+          />
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    
+    <h3 class="text-center mt-3">Bem-vindo, <span th:text="${nome}">Aluno</span>!</h3>
+    
+
+     <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Desbloquear Badges</h5>
+            <p class="card-text">Ganhe conquistas ao completar cursos e atividades.</p>
+            <a href="desbloquearbadge.html" class="btn btn-outline-light">Desbloquear</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Receber Certificado</h5>
+            <p class="card-text">Receba seu certificado de conclusão após finalizar o curso.</p>
+            <a href="certificado.html" class="btn btn-outline-light">Baixar Certificado</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Avaliar Curso</h5>
+            <p class="card-text">Deixe sua avaliação sobre o curso concluído.</p>
+            <a href="avaliar.html" class="btn btn-outline-light">Avaliar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Enviar Mensagem ao Professor</h5>
+            <p class="card-text">Tire dúvidas ou envie mensagens ao instrutor.</p>
+            <a href="mensagem.html" class="btn btn-outline-light">Enviar Mensagem</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Verificar Progresso</h5>
+            <p class="card-text">Acompanhe seu desempenho e progresso no curso.</p>
+            <a href="progresso.html" class="btn btn-outline-light">Ver Progresso</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Acessar Curso</h5>
+            <p class="card-text">Visualize os conteúdos e aulas do curso matriculado.</p>
+            <a href="#" class="btn btn-outline-light">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Comprar Curso</h5>
+            <p class="card-text">Adquira novos cursos para expandir seus conhecimentos.</p>
+            <a href="comprarcurso.html" class="btn btn-outline-light">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Visualizar Cursos</h5>
+            <p class="card-text">Explore os cursos disponíveis na plataforma.</p>
+            <a href="#" class="btn btn-outline-light">Ver Cursos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Editar Perfil</h5>
+            <p class="card-text">Personalize suas informações e preferências.</p>
+            <a href="#" class="btn btn-outline-light">Editar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 text-bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Sair da conta</h5>
+            <p class="card-text">Sair da sua conta</p>
+            <form th:action="@{/logout}" method="post">
+              <button type="submit" class="btn btn-outline-light">Sair</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  &nbsp;
+
+  <div class="text-bg-dark p-3 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.5rem;">
+    &nbsp;
+       ACADIA &copy;
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
