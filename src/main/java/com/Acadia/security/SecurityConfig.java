@@ -1,6 +1,8 @@
 package com.Acadia.security;
 
 import com.Acadia.service.UsuarioDetailsService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +20,8 @@ public class SecurityConfig {
 
         private final UsuarioDetailsService usuarioDetailsService;
         private final CustomSuccessHandler customSuccessHandler;
+
+        @Autowired
 
         public SecurityConfig(UsuarioDetailsService usuarioDetailsService,
                         CustomSuccessHandler customSuccessHandler) {
