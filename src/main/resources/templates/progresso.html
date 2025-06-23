@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progresso - Acadia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <style> body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #212529; } .navbar { background: linear-gradient(90deg, #343a40, #212529); } .navbar-brand { font-weight: 600; font-size: 1.5rem; } .card { border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); } footer { background-color: #212529; color: white; text-align: center; padding: 1rem; font-size: 1.2rem; font-weight: 600; } </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="paginainicial.html" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.5rem;">ACADIA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="paginainicial.html">Home</a></li>
+        <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              id="alunoDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Aluno
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="alunoDropdown">
+              <li><a class="dropdown-item" href="certificado.html">Receber certificado</a></li>
+              <li><a class="dropdown-item" href="avaliar.html">Avaliar curso</a></li>
+              <li><a class="dropdown-item" href="mensagem.html">Enviar mensagem ao professor</a></li>
+              <li><a class="dropdown-item" href="progresso.html">Verificar progresso</a></li>
+              <li><a class="dropdown-item" href="#">Acessar curso</a></li>
+              <li><a class="dropdown-item" href="comprarcurso.html">Comprar curso</a></li>
+              <li><a class="dropdown-item" href="#">Visualizar cursos</a></li>
+              <li><a class="dropdown-item" href="#">Editar perfil</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="TeladeLogin.html">Sair da conta</a></li>
+            </ul>
+          </li>
+        <li class="nav-item"><a class="nav-link" href="#">Lista de cursos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Assinaturas</a></li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Digite o que deseja" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+  </nav>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Seu Progresso</h1>
+    <div class="card p-4" id="progresso-container">
+      <!-- Os dados do progresso serão inseridos aqui via JavaScript -->
+    </div>
+  </div>
+
+  <footer class="fixed-bottom">
+  ACADIA &copy;
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Função para carregar os dados do progresso do aluno
+    async function carregarProgresso() {
+      try {
+        const response = await fetch("http://localhost:8080/api/progresso"); // ajuste se a URL da sua API for diferente
+        const cursos = await response.json();
+
+        const container = document.getElementById("progresso-container");
+        container.innerHTML = ""; // limpa conteúdo anterior (se houver)
+
+        if (cursos.length === 0) {
+          container.innerHTML = "<p>Nenhum progresso encontrado.</p>";
+          return;
+        }
+
+        cursos.forEach(curso => {
+          const cursoHTML = `
+            <h5>Curso: ${curso.nome}</h5>
+            <div class="progress mb-3">
+              <div class="progress-bar bg-success" style="width: ${curso.porcentagem}%">
+                ${curso.porcentagem}%
+              </div>
+            </div>
+          `;
+          container.innerHTML += cursoHTML;
+        });
+      } catch (error) {
+        console.error("Erro ao carregar o progresso:", error);
+        document.getElementById("progresso-container").innerHTML = "<p>Erro ao carregar o progresso.</p>";
+      }
+    }
+
+    // Chama a função ao carregar a página
+    document.addEventListener("DOMContentLoaded", carregarProgresso);
+  </script>
+  </body>
+  </html>
