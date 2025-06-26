@@ -39,14 +39,17 @@ public class SecurityConfig {
                 http
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/", "/login", "/usuarios/cadastro",
-                                                                "/usuarios/cadastrar", "/css/**",
+                                                                "/usuarios/cadastrar", "/cursos/lista", "/pagamento",
+                                                                "/assinaturas",
+                                                                "/css/**",
                                                                 "/js/**", "/img/**")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/login")
-                                                .successHandler(customSuccessHandler) //
+                                                .defaultSuccessUrl("/aluno", true) // Quando der certo vai para a página
+                                                                                   // do aluno
                                                 .permitAll())
                                 .logout(logout -> logout
                                                 .logoutSuccessUrl("/login?logout")
