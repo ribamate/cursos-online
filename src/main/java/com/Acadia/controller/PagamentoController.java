@@ -17,35 +17,44 @@ import java.time.LocalDate;
 public class PagamentoController {
 
     @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
     private AssinaturaService assinaturaService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    // Exibe a página de confirmação do pagamento
     @GetMapping
-    public String exibirFormularioPagamento(@RequestParam String plano, Model model) {
-        model.addAttribute("plano", plano);
+    public String mostrarTelaPagamento(@RequestParam String plano, Model model) {
+        model.addAttribute("planoSelecionado", plano.toUpperCase());
         return "pagamento";
     }
 
+    // Processa a confirmação do pagamento
     @PostMapping("/confirmar")
     public String confirmarPagamento(@RequestParam String plano, Principal principal) {
-        Usuario aluno = usuarioService.buscarPorEmail(principal.getName());
+        String emailUsuario = principal.getName();
+        Usuario usuario = usuarioService.buscarPorEmail(emailUsuario);
 
         Assinatura assinatura = new Assinatura();
-        assinatura.setAluno(aluno);
-        assinatura.setTipo(plano);
+        assinatura.setAluno(usuario);
+        assinatura.setTipo(plano.toUpperCase());
         assinatura.setDataInicio(LocalDate.now());
-        assinatura.setStatus("ATIVA");
 
-        if ("ANUAL".equalsIgnoreCase(plano)) {
+        if (plano.equalsIgnoreCase("anual")) {
             assinatura.setDataFim(LocalDate.now().plusYears(1));
         } else {
             assinatura.setDataFim(LocalDate.now().plusMonths(1));
         }
 
+        assinatura.setStatus("ATIVA");
         assinaturaService.salvar(assinatura);
 
-        return "redirect:/aluno";
+        return "redirect:/painel-aluno";
+    }
+
+    // Botão de cancelamento (opcional, mas pode ser usado se tiver lógica extra)
+    @PostMapping("/cancelar")
+    public String cancelarPagamento() {
+        return "redirect:/assinaturas";
     }
 }
