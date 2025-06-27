@@ -1,6 +1,5 @@
 package com.Acadia.service;
 
-import com.Acadia.model.Usuario;
 import com.Acadia.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
