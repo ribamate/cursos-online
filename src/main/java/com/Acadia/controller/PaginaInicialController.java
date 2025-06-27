@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PaginaInicialController {
 
     @GetMapping({ "/", "/paginainicial" })
-    public String exibirPaginaInicial() {
+    public String mostrarPaginaInicial() {
         return "paginainicial"; // Vai procurar em templates/paginainicial.html
     }
 }

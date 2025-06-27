@@ -1,8 +1,6 @@
 package com.Acadia.security;
 
 import com.Acadia.service.UsuarioDetailsService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,19 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig {
 
         private final UsuarioDetailsService usuarioDetailsService;
-        private final CustomSuccessHandler customSuccessHandler;
-
-        @Autowired
-
-        public SecurityConfig(UsuarioDetailsService usuarioDetailsService,
-                        CustomSuccessHandler customSuccessHandler) {
-                this.usuarioDetailsService = usuarioDetailsService;
-                this.customSuccessHandler = customSuccessHandler;
-        }
 
         public SecurityConfig(UsuarioDetailsService usuarioDetailsService) {
                 this.usuarioDetailsService = usuarioDetailsService;
-                this.customSuccessHandler = null;
         }
 
         @Bean
@@ -39,17 +27,15 @@ public class SecurityConfig {
                 http
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/", "/paginainicial", "/login", "/usuarios/cadastro",
-                                                                "/usuarios/cadastrar", "/cursos/lista", "/pagamento",
-                                                                "/assinaturas",
-                                                                "/css/**",
-                                                                "/js/**", "/img/**")
+                                                                "/usuarios/cadastrar",
+                                                                "/css/**", "/js/**", "/img/**", "/cursos/lista",
+                                                                "/assinaturas", "/pagamento")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/login")
-                                                .defaultSuccessUrl("/aluno", true) // Quando der certo vai para a página
-                                                                                   // do aluno
+                                                .defaultSuccessUrl("/aluno", true)
                                                 .permitAll())
                                 .logout(logout -> logout
                                                 .logoutSuccessUrl("/login?logout")
@@ -68,8 +54,8 @@ public class SecurityConfig {
         }
 
         @Bean
+
         public PasswordEncoder passwordEncoder() {
                 return NoOpPasswordEncoder.getInstance(); // NÃO recomendado em produção!
         }
-
 }
