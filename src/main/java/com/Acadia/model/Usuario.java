@@ -26,8 +26,11 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Perfil perfil; // Enum: ALUNO, PROFESSOR, ADMINISTRADOR
 
+    private boolean assinante;
+
     // Construtores
-    public Usuario() {
+    public Usuario(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public Usuario(String nome, String email, String senha, Perfil perfil) {
@@ -76,6 +79,14 @@ public class Usuario implements UserDetails {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public boolean isAssinante() {
+        return assinante;
+    }
+
+    public void setAssinante(boolean assinante) {
+        this.assinante = assinante;
     }
 
     // Implementação de UserDetails

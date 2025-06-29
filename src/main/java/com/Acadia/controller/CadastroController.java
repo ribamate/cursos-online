@@ -1,5 +1,6 @@
 package com.Acadia.controller;
 
+import com.Acadia.model.Perfil;
 import com.Acadia.model.Usuario;
 import com.Acadia.service.UsuarioService;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,8 @@ public class CadastroController {
     @PostMapping("/cadastrar")
 
     public String cadastrarUsuario(@ModelAttribute Usuario usuario) {
-        usuarioService.salvar(usuario); // A linha que salva no banco!
+        usuario.setPerfil(VISITANTE;)
+        usuario.setAssinante(false); // A linha que salva no banco!
         return "redirect:/login?cadastroSucesso"; // redireciona para login com mensagem
     }
 }

@@ -43,8 +43,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!--thymeleaf
-		para páginas HTML dinâmicas-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -61,7 +59,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId> <!-- ou a versão mais recente -->
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
